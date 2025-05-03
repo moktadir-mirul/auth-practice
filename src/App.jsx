@@ -1,5 +1,7 @@
 
+import { Outlet } from 'react-router'
 import './App.css'
+import NavBar from './NavBar/NavBar'
 
 function App() {
 
@@ -7,7 +9,8 @@ function App() {
   return (
     <>
       <div>
-        <h1 className='text-center text-3xl py-8'>I am home</h1>
+        <NavBar></NavBar>
+        <Outlet></Outlet>
       </div>
     </>
   )
