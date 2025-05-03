@@ -7,14 +7,16 @@ const SignUp = () => {
 
     const handleCreateUser = (e) => {
         e.preventDefault();
-        const email = 
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        createUser(email, password);
     }
 
   return (
-    <div>
+    <div className="py-5">
       <div className="card w-full max-w-sm shrink-0 shadow-xl mx-auto bg-gray-200">
         <div className="card-body">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-4xl text-blue-900 font-bold text-center">Please, Sign Up!</h1>
           <form onSubmit={handleCreateUser} className="fieldset">
           <label className="label">Name</label>
           <input type="text" className="input" name="name" placeholder="Name" />
@@ -27,7 +29,7 @@ const SignUp = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn btn-neutral mt-4">Login</button>
+            <button className="btn btn-neutral mt-4">Sign Up</button>
           </form>
         </div>
       </div>

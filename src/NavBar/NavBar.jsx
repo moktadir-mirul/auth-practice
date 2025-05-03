@@ -1,7 +1,20 @@
-import React from "react";
-import { NavLink } from "react-router";
+import React, { use } from "react";
+import { Link, NavLink } from "react-router";
+import { AuthContext } from "../AuthContext/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/Firebase.init";
 
 const NavBar = () => {
+
+    const {userData} = use(AuthContext);
+    console.log(userData);
+    
+    
+    const handleLogout = () => {
+        signOut(auth)
+        .then(() => console.log('user logged out success'))
+        .catch((err) => console.log(err));
+    }
 
     const Links = <>
     <li><NavLink to={"/"}><div><button>Home</button></div></NavLink></li>
@@ -46,7 +59,9 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {
+            userData ? <button onClick={handleLogout} className="btn">Log Out</button> : <Link to={"/signin"}><button className="btn">Log In</button></Link>
+          }
         </div>
       </div>
     </div>
