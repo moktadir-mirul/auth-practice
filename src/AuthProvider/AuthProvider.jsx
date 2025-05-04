@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { auth } from '../Firebase/Firebase.init';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const AuthProvider = ( {children} ) => {
 
@@ -15,6 +15,10 @@ const AuthProvider = ( {children} ) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
+    const userLogout = () => {
+        return signOut(auth);
+    }
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             if(currentUser) {
@@ -22,7 +26,7 @@ const AuthProvider = ( {children} ) => {
                 setUserData(currentUser);
             }
             else {
-                setUserData(null)
+                setUserData(null);
                 console.log('No user found');
             }
         });
@@ -31,7 +35,7 @@ const AuthProvider = ( {children} ) => {
         }
     }, [])
 
-    const userInfo = {createUser, userSignIn, userData};
+    const userInfo = {createUser, userSignIn, userData, userLogout};
 
     return (
         <AuthContext value={userInfo}>
