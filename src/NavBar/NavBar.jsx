@@ -11,6 +11,7 @@ const NavBar = () => {
     userLogout()
       .then(() => console.log("user logged out success"))
       .catch((err) => console.log(err));
+      
   };
 
   const Links = (
@@ -104,7 +105,7 @@ const NavBar = () => {
             </button>
           ) : (
             <Link to={"/signin"}>
-              <button className="btn">Log In</button>
+              <button className="btn">Sign In</button>
             </Link>
           )}
         </div>
